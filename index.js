@@ -1,37 +1,26 @@
-// const http=require("http");
 
-// const port=8000;
+const express=require("express");
 
-// const index=http.createServer((request,response)=>{
-//     response.statusCode=200;
-//     response.setHeader("Content-Type","text/plain");
-//     response.end("Hello World\n");
-// });
+const http=require("http");
 
-// index.listen(port,()=>{
-//     console.log(`Server running in at http://localhost:${port}`)
-// })
+const Url=require("url");
 
-const express = require('express')
-const app = express()
-const path=require("path")
-const port = 3000
+const port=8000;
+
+const Users=require("./users.js")
+
+const app=express();
 
 
 app.get("/",(req,res)=>{
-    // console.log("hi terminal");
-    // res.send("hi refreshedddddd yay");
-    // res.render("index");
+    res.send('hell000')
+    res.render("index",{text:"World"});
+});
 
-    res.sendFile(path.join(__dirname,"public","index.html"))
-})
+app.use("/users",Users) 
 
-// app.use(express.static(path.join(__dirname,"public")));
 
-const userRouter=require("./users");
-
-app.use("/users",userRouter);
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.listen(port,()=>{
+    `Server is running at localhost:${port}`
+}
+)
